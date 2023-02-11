@@ -11,7 +11,7 @@ ordered_insts = []
 if len(settings.custom_paths) == 0:
     for i in range(settings.inst_number):
         item = inst_list
-        item = [w.replace('*', str(i)) for w in settings.inst_setup]
+        item = [w.replace('*', str(i+1)) for w in settings.inst_setup]
         item = "".join(item)
         ordered_insts.append(item)
 else:
