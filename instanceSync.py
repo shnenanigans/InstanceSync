@@ -72,8 +72,12 @@ def create_sync():
     sync_button = Button(root, background="#FFA9FF", text='sync', height="2", width="8", command=lambda: [find_instances(method.get())])
     sync_button.place(relx=0.8, rely=0.45, anchor=CENTER)
 
+
 #creates the list of multimc groups for the user to choose from in a dropdown menu
 def create_group_widget():
+    frame = Frame(root)
+    frame.place(relx=0.6, rely=0.3, anchor=N)
+    frame.config(background="#FFE2FF")
     try:
         destroy_groupings()
     except:
@@ -81,16 +85,28 @@ def create_group_widget():
     global groupings
     global groupwidget_label
     ahh = groups.find_groups()
-    groupings = Listbox(root, selectmode = "single", height=len(ahh))
+    groupings = Listbox(frame, selectmode = "single")
+
+    #make sure it cant go off screen
+    if len(ahh)>10:
+        groupings.config(height=10)
+    else:
+        groupings.config(height=len(ahh))
+
     for each_item in range(len(ahh)):
         groupings.insert(END, ahh[each_item])
         groupings.itemconfig(each_item)
-    groupings.place(relx=0.6, rely=0.3, anchor=N)
+        
+    #packing the listbox into the frame automatically makes it scrollable
+    groupings.pack()
     groupwidget_label = Label(root, text="Select which group you would like to sync.\nThey will sync to the first instance in that group", background="#FFE2FF")
     groupwidget_label.place(relx=0.6, rely=0.2, anchor=N)
 
 #creates the list of instances for the user to choose from
 def create_instance_widget():
+    frame = Frame(root)
+    frame.place(relx=0.6, rely=0.3, anchor=N)
+    frame.config(background="#FFE2FF")
     try:
         destroy_instances()
     except:
@@ -98,13 +114,23 @@ def create_instance_widget():
     global instances
     global instwidget_label
     ahh = groups.find_instances()
-    instances = Listbox(root, selectmode = "multiple", height=len(ahh))
+    instances = Listbox(frame, selectmode = "multiple")
+
+    #make sure it cant go off screen
+    if len(ahh)>10:
+        instances.config(height=10)
+    else:
+        instances.config(height=len(ahh))
+        
     for each_item in range(len(ahh)):
         instances.insert(END, ahh[each_item])
         instances.itemconfig(each_item)
-    instances.place(relx=0.6, rely=0.3, anchor=N)
-    instwidget_label = Label(root, text="Select which instances to sync.\nThey will sync to the whichever is highest in the list.", background="#FFE2FF")
+
+    #packing the listbox into the frame automatically makes it scrollable
+    instances.pack()
+    instwidget_label = Label(root, text="Select which instances to sync.\nThey will sync to the whichever is highest in the list,\n NOT the one you click first.", background="#FFE2FF")
     instwidget_label.place(relx=0.6, rely=0.2, anchor=N)
+
 
 #if you press the radiobuttons again they create these widgets again so instead i am going to delete the old ones and replace them
 def destroy_groupings():
