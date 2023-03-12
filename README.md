@@ -10,4 +10,4 @@ There are a couple things I highly recommend before running this program:
 2. Make a folder to put InstanceSync.exe in. This is because a new file will be created when you run it, which saves your multimc path so you don't have to search for it every time.
 
 
-If you really, really don't want to download the .exe because of the virus warning you can download the source code instead, type `pip install tkinter` in command prompt, and double click InstanceSync.py. Another option is to download the first release.
+If you really, really don't want to download the .exe because of the virus warning you can download the source code instead. Type `pip install tkinter` in command prompt, and double click InstanceSync.py and it should work. Another option is to download the first release.
