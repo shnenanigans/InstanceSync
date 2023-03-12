@@ -81,7 +81,7 @@ def create_group_widget():
     try:
         destroy_groupings()
     except:
-        pass
+        pass #if there is an error, the widgets dont exist at all and dont need to be destroyed.
     global groupings
     global groupwidget_label
     ahh = groups.find_groups()
@@ -110,7 +110,7 @@ def create_instance_widget():
     try:
         destroy_instances()
     except:
-        pass
+        pass #if there is an error, the widgets dont exist at all and dont need to be destroyed.
     global instances
     global instwidget_label
     ahh = groups.find_instances()
@@ -135,8 +135,10 @@ def create_instance_widget():
 #if you press the radiobuttons again they create these widgets again so instead i am going to delete the old ones and replace them
 def destroy_groupings():
     groupings.destroy()
+    groupwidget_label.destroy()
 def destroy_instances():
     instances.destroy()
+    instwidget_label.destroy()
 
 #creates the buttons which allow user to choose between groups and instances
 def create_radio_buttons():
