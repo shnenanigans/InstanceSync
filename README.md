@@ -2,7 +2,7 @@
 ### Syncs the config, mods, resourcepacks, and speedrunigt folders for multiple instances in minecraft speedrunning.
 
 
-If the download warns you of a virus, this is most likely because the program is made to add, delete, and modify your files which windows antivirus doesn't like.
+If the download warns you of a virus, this is most likely because the program is made to add, delete, and modify your files which windows antivirus doesn't like. You may have to press more info > run anyway.
 
 
 There are a couple things I highly recommend before running this program:
