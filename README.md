@@ -11,3 +11,6 @@ There are a couple things I highly recommend before running this program:
 
 
 If you really, really don't want to download the .exe because of the virus warning you can download the source code instead. Type `pip install tkinter` in command prompt, and double click InstanceSync.py and it should work. Another option is to download the first release.
+
+
+if you have problems or notice bugs please dm me on discord Shnenanigans#0001
