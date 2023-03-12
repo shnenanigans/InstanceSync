@@ -88,8 +88,8 @@ def create_group_widget():
     groupings = Listbox(frame, selectmode = "single")
 
     #make sure it cant go off screen
-    if len(ahh)>10:
-        groupings.config(height=10)
+    if len(ahh)>15:
+        groupings.config(height=15)
     else:
         groupings.config(height=len(ahh))
 
@@ -117,8 +117,8 @@ def create_instance_widget():
     instances = Listbox(frame, selectmode = "multiple")
 
     #make sure it cant go off screen
-    if len(ahh)>10:
-        instances.config(height=10)
+    if len(ahh)>15:
+        instances.config(height=15)
     else:
         instances.config(height=len(ahh))
         
@@ -221,6 +221,7 @@ def movebutton():
     x=uniform(0.1,0.9)
     y=uniform(0.1,0.9)
     colon3.place(relx=x, rely=y)
+    colon3.lift()
 
 #create the initial buttons/labels on the gui
 browsemc = Button(root, background="#FFA9FF", text="browse folders", command=browse_folder)
