@@ -47,7 +47,7 @@ def find_instances_from_groups(group):
     group_lines = f_groups.readlines()
     insts = []
     for line in group_lines:
-        if line.find(group) != -1:
+        if line.find(f"\"{group}\": ") != -1:
             i=group_lines.index(line) + 3
             while group_lines[i].find("]") == -1:
                 inst = find_between(group_lines[i])
