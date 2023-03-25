@@ -96,6 +96,10 @@ def create_group_widget():
     for each_item in range(len(ahh)):
         groupings.insert(END, ahh[each_item])
         groupings.itemconfig(each_item)
+    
+    global find_first_instance
+    find_first_instance = Button(root, text="What is my\nfirst instance?", background="#ffa9ff", command=show_first_inst)
+    find_first_instance.place(relx=0.8, rely=0.65, anchor=CENTER)
         
     #packing the listbox into the frame automatically makes it scrollable
     groupings.pack()
@@ -136,6 +140,7 @@ def create_instance_widget():
 def destroy_groupings():
     groupings.destroy()
     groupwidget_label.destroy()
+    find_first_instance.destroy()
 def destroy_instances():
     instances.destroy()
     instwidget_label.destroy()
@@ -146,7 +151,7 @@ def create_radio_buttons():
     radio_label = Label(root, text="Select groups if you have a multimc group\nfor the instances you want to sync", background="#FFE2FF")
     method= IntVar()
     bygroups = Radiobutton(root, background="#FFE2FF", text="groups", variable=method, value=0, command=lambda: [instwidget_label.destroy(), instances.destroy(), create_group_widget()])
-    byinst = Radiobutton(root, background="#FFE2FF", text="instances", variable=method, value=1, command=lambda: [groupings.destroy(), create_instance_widget()])
+    byinst = Radiobutton(root, background="#FFE2FF", text="instances", variable=method, value=1, command=lambda: [groupings.destroy(), find_first_instance.destroy(), create_instance_widget()])
     bygroups.place(relx=0.02, rely=0.3, anchor=W)
     byinst.place(relx=0.02, rely=0.35, anchor=W)
     radio_label.place(relx=0.02, rely=0.2, anchor=NW)
@@ -181,7 +186,16 @@ def check_packs():
     add_resourcepacks(resourcepacks.get())
 def check_igt():
     add_speedrunigt(speedrunigt.get())
-    
+
+#tells the user which instance in that group is the first one, which all other instances will sync to
+def show_first_inst():
+    selected = groupings.curselection()
+    if len(selected)==0:
+        messagebox.showerror(title=None, message="Please select a group to check")
+    for i in selected:
+        group = groupings.get(i)
+    insts = groups.find_instances_from_groups(group)
+    messagebox.showinfo(title=None, message=f"your first instance is {insts[0]}. All other instances in this group will sync to this one.")
 
 #figure out if inst or groups is selected, and then get which instances to sync from the dropdown menues
 def find_instances(radio):
