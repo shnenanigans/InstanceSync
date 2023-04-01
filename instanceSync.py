@@ -63,13 +63,13 @@ def browse_folder():
     global mc_label
     directory = filedialog.askdirectory()
     mc_label = Label(root, text=directory, width=60, anchor="w", background="#FFE2FF")
-    usebutton_browse = Button(root, background="#FFA9FF", text="use", command=use_mc_browse)
+    usebutton_browse = Button(root, background="#FFA9FF", text="use", command=use_mc_browse, activebackground="#FFE2FF")
     mc_label.place(relx=0.02, rely=0.11, anchor=W)
     usebutton_browse.place(relx=0.6, rely=0.11, anchor=CENTER)
         
 #create the sync button which will activate the program
 def create_sync():
-    sync_button = Button(root, background="#FFA9FF", text='sync', height="2", width="8", command=lambda: [find_instances(method.get())])
+    sync_button = Button(root, background="#FFA9FF", text='sync', height="2", width="8", command=lambda: [find_instances(method.get())], activebackground="#FFE2FF")
     sync_button.place(relx=0.8, rely=0.45, anchor=CENTER)
 
 
@@ -85,7 +85,7 @@ def create_group_widget():
     global groupings
     global groupwidget_label
     ahh = groups.find_groups()
-    groupings = Listbox(frame, selectmode = "single")
+    groupings = Listbox(frame, selectmode = "single", bg="#FFEFFF")
 
     #make sure it cant go off screen
     if len(ahh)>15:
@@ -118,7 +118,7 @@ def create_instance_widget():
     global instances
     global instwidget_label
     ahh = groups.find_instances()
-    instances = Listbox(frame, selectmode = "multiple")
+    instances = Listbox(frame, selectmode = "multiple", bg="#FFEFFF")
 
     #make sure it cant go off screen
     if len(ahh)>15:
@@ -150,8 +150,8 @@ def create_radio_buttons():
     global method
     radio_label = Label(root, text="Select groups if you have a multimc group\nfor the instances you want to sync", background="#FFE2FF")
     method= IntVar()
-    bygroups = Radiobutton(root, background="#FFE2FF", text="groups", variable=method, value=0, command=lambda: [instwidget_label.destroy(), instances.destroy(), create_group_widget()])
-    byinst = Radiobutton(root, background="#FFE2FF", text="instances", variable=method, value=1, command=lambda: [groupings.destroy(), find_first_instance.destroy(), create_instance_widget()])
+    bygroups = Radiobutton(root, background="#FFE2FF", activebackground="#FFE2FF", text="groups", variable=method, value=0, command=lambda: [instwidget_label.destroy(), instances.destroy(), create_group_widget()])
+    byinst = Radiobutton(root, background="#FFE2FF", activebackground="#FFE2FF", text="instances", variable=method, value=1, command=lambda: [groupings.destroy(), find_first_instance.destroy(), create_instance_widget()])
     bygroups.place(relx=0.02, rely=0.3, anchor=W)
     byinst.place(relx=0.02, rely=0.35, anchor=W)
     radio_label.place(relx=0.02, rely=0.2, anchor=NW)
@@ -167,10 +167,10 @@ def create_check_buttons():
     mods=IntVar()
     resourcepacks=IntVar()
     speedrunigt=IntVar()
-    configbtn = Checkbutton(root, background="#FFE2FF", text='config', variable=config, onvalue=1, offvalue=0, command=check_config)
-    modsbtn = Checkbutton(root, background="#FFE2FF", text='mods', variable=mods, onvalue=1, offvalue=0, command=check_mods)
-    packsbtn = Checkbutton(root, background="#FFE2FF", text='resourcepacks', variable=resourcepacks, onvalue=1, offvalue=0, command=check_packs)
-    igtbtn = Checkbutton(root, background="#FFE2FF", text='speedrunigt', variable=speedrunigt, onvalue=1, offvalue=0, command=check_igt)
+    configbtn = Checkbutton(root, background="#FFE2FF", text='config', variable=config, onvalue=1, offvalue=0, command=check_config, activebackground="#FFE2FF")
+    modsbtn = Checkbutton(root, background="#FFE2FF", text='mods', variable=mods, onvalue=1, offvalue=0, command=check_mods, activebackground="#FFE2FF")
+    packsbtn = Checkbutton(root, background="#FFE2FF", text='resourcepacks', variable=resourcepacks, onvalue=1, offvalue=0, command=check_packs, activebackground="#FFE2FF")
+    igtbtn = Checkbutton(root, background="#FFE2FF", text='speedrunigt', variable=speedrunigt, onvalue=1, offvalue=0, command=check_igt, activebackground="#FFE2FF")
     configbtn.place(relx=0.02, rely=0.5, anchor=W)
     modsbtn.place(relx=0.02, rely=0.55, anchor=W)
     packsbtn.place(relx=0.02, rely=0.6, anchor=W)
@@ -231,7 +231,7 @@ def find_instances(radio):
 #silly little mini game
 def create_colon3():
     global colon3
-    colon3 = Button(root, height=2, width=4, background="#CCE5FF", text=":3", command=movebutton)
+    colon3 = Button(root, height=2, width=4, background="#CCE5FF", activebackground="#cce5ff", text=":3", command=movebutton)
     colon3.place(relx=0.9, rely=0.9, anchor=CENTER)
 def movebutton():
     x=uniform(0.1,0.9)
@@ -240,11 +240,11 @@ def movebutton():
     colon3.lift()
 
 #create the initial buttons/labels on the gui
-browsemc = Button(root, background="#FFA9FF", text="browse folders", command=browse_folder)
+browsemc = Button(root, background="#FFA9FF", text="browse folders", command=browse_folder, activebackground="#FFE2FF")
 path_label = Label(root, text="or enter your MultiMC path manually:", background="#FFE2FF")
-findmc = Entry(root, width=50) #enter multimc path
-usebutton_manual = Button(root, background="#FFA9FF", text="use", command=use_mc_manual) #press use or it doesnt work
-quit_button = Button(root, background="#FFA9FF", text='quit', height="2", width="7", command=root.destroy)
+findmc = Entry(root, width=50, bg="#FFEFFF") #enter multimc path
+usebutton_manual = Button(root, background="#FFA9FF", text="use", command=use_mc_manual, activebackground="#FFE2FF") #press use or it doesnt work
+quit_button = Button(root, background="#FFA9FF", text='quit', height="2", width="7", command=root.destroy, activebackground="#FFE2FF")
 
 #save mcpath for reuse
 try:
