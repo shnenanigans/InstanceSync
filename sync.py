@@ -61,6 +61,22 @@ def get_errors(error_list):
         error_string += f"{error[0]} {error[1]} folder\n"
     return error_string
 
+#edits options.txt to activate chosen resource packs
+def activate_packs(first_inst, curr_inst, path):
+    first_opt_path = path + "\\instances\\" + "".join(first_inst) + "\\.minecraft\\options.txt"
+    curr_opt_path = path + "\\instances\\" + "".join(curr_inst) + "\\.minecraft\\options.txt"
+    
+    with open(first_opt_path, "r") as f:
+        lines = f.readlines()
+        pack_line = lines[33]
+    with open(curr_opt_path, "r") as f:
+        lines = f.readlines()
+        lines[33] = pack_line
+    with open(curr_opt_path, "w") as f:
+        f.writelines(lines)
+
+
+
 #delete the config, mods, packs, and speedrunigt folders for all but the first instance (otherwise copytree will get mad at you)
 def del_and_replace(insts, path):
     inst_number = len(insts)
@@ -143,6 +159,7 @@ def del_and_replace(insts, path):
         if settings.resourcepacks:
             try:
                 shutil.copytree(paths_list[2][0], paths_list[2][i])
+                activate_packs(insts[0], insts[i], path)
             except:
                 count += 1
                 error_list.append([insts[i], "resourcepacks"])
