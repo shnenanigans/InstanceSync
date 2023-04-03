@@ -56,9 +56,14 @@ def del_errors(error_list):
 
 #put the instances which failed to sync in a nice format for the user to understand
 def get_errors(error_list):
+    packs = False
     error_string = "Folders failed to sync: \n"
     for error in error_list:
         error_string += f"{error[0]} {error[1]} folder\n"
+        if error[1]=="resourcepacks":
+            packs = True
+    if packs:
+        error_string += "Make sure your instances are closed"
     return error_string
 
 #edits options.txt to activate chosen resource packs
